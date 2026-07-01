@@ -6,58 +6,58 @@
 
 :root {
   /* Core backgrounds */
-  --vsc-bg:              #1e1e1e;
-  --vsc-editor-bg:       #1e1e1e;
-  --vsc-sidebar-bg:      #252526;
-  --vsc-activitybar-bg:  #333333;
-  --vsc-panel-bg:        #1e1e1e;
-  --vsc-titlebar-bg:     #3c3c3c;
-  --vsc-menubar-bg:      #3c3c3c;
-  --vsc-statusbar-bg:    #007acc;
-  --vsc-tab-active-bg:   #1e1e1e;
-  --vsc-tab-inactive-bg: #2d2d2d;
-  --vsc-input-bg:        #3c3c3c;
-  --vsc-dropdown-bg:     #3c3c3c;
-  --vsc-list-hover-bg:   #2a2d2e;
-  --vsc-list-active-bg:  #094771;
-  --vsc-breadcrumb-bg:   #1e1e1e;
+  --vsc-bg:              #04070D;
+  --vsc-editor-bg:       #04070D;
+  --vsc-sidebar-bg:      transparent;
+  --vsc-activitybar-bg:  transparent;
+  --vsc-panel-bg:        transparent;
+  --vsc-titlebar-bg:     transparent;
+  --vsc-menubar-bg:      transparent;
+  --vsc-statusbar-bg:    transparent;
+  --vsc-tab-active-bg:   rgba(15,20,35,0.8);
+  --vsc-tab-inactive-bg: transparent;
+  --vsc-input-bg:        rgba(15,20,35,.8);
+  --vsc-dropdown-bg:     rgba(15,20,35,.9);
+  --vsc-list-hover-bg:   rgba(0, 245, 255, 0.1);
+  --vsc-list-active-bg:  rgba(0, 245, 255, 0.2);
+  --vsc-breadcrumb-bg:   transparent;
 
   /* Borders */
-  --vsc-border:          #3c3c3c;
-  --vsc-border-light:    #474747;
-  --vsc-tab-border:      #252526;
-  --vsc-panel-border:    #3c3c3c;
-  --vsc-sash:            #007acc;
+  --vsc-border:          rgba(0,255,255,.12);
+  --vsc-border-light:    rgba(0,255,255,.2);
+  --vsc-tab-border:      rgba(0,255,255,.12);
+  --vsc-panel-border:    rgba(0,255,255,.12);
+  --vsc-sash:            #00F5FF;
 
   /* Text */
-  --vsc-fg:              #cccccc;
-  --vsc-fg-dim:          #858585;
-  --vsc-fg-bright:       #e0e0e0;
-  --vsc-fg-muted:        #6a6a6a;
+  --vsc-fg:              #ffffff;
+  --vsc-fg-dim:          #8b949e;
+  --vsc-fg-bright:       #00F5FF;
+  --vsc-fg-muted:        #6e7681;
   --vsc-heading:         #ffffff;
-  --vsc-link:            #3794ff;
+  --vsc-link:            #00F5FF;
 
   /* Accent / brand */
-  --vsc-accent:          #007acc;
-  --vsc-accent-hover:    #1b8ad4;
-  --vsc-accent-deep:     #0e639c;
-  --vsc-focus-border:    #007fd4;
+  --vsc-accent:          #00F5FF;
+  --vsc-accent-hover:    #0099FF;
+  --vsc-accent-deep:     #7B61FF;
+  --vsc-focus-border:    #00F5FF;
 
   /* Semantic */
-  --vsc-success:         #4ec9b0;
-  --vsc-warning:         #cca700;
-  --vsc-error:           #f14c4c;
-  --vsc-info:            #3794ff;
+  --vsc-success:         #00FFA3;
+  --vsc-warning:         #FFB547;
+  --vsc-error:           #FF3E6C;
+  --vsc-info:            #0099FF;
 
   /* Terminal */
-  --vsc-terminal-bg:     #1e1e1e;
-  --vsc-terminal-fg:     #cccccc;
-  --vsc-terminal-green:  #4ec9b0;
-  --vsc-terminal-cursor: #aeafad;
+  --vsc-terminal-bg:     transparent;
+  --vsc-terminal-fg:     #00F5FF;
+  --vsc-terminal-green:  #00FFA3;
+  --vsc-terminal-cursor: #00F5FF;
 
   /* Shadows */
-  --vsc-shadow:          0 4px 12px rgba(0,0,0,0.5);
-  --vsc-shadow-sm:       0 2px 8px rgba(0,0,0,0.36);
+  --vsc-shadow:          0 8px 32px rgba(0, 245, 255, 0.1);
+  --vsc-shadow-sm:       0 4px 16px rgba(0, 245, 255, 0.15);
 
   /* Typography */
   --vsc-font-family:     'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -93,11 +93,39 @@ html, body, #root {
    Scrollbars
    ======================================== */
 
-::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(121,121,121,0.4); min-height: 40px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(121,121,121,0.7); }
+::-webkit-scrollbar-thumb { 
+  background: rgba(0, 245, 255, 0.2); 
+  border-radius: 4px;
+  box-shadow: inset 0 0 4px rgba(0,255,255,0.5);
+}
+::-webkit-scrollbar-thumb:hover { 
+  background: rgba(0, 245, 255, 0.4); 
+  box-shadow: inset 0 0 8px rgba(0,255,255,0.8);
+}
 ::-webkit-scrollbar-corner { background: transparent; }
+
+/* Sci-Fi Glass Utility Classes */
+.sci-fi-glass {
+  background: rgba(15, 20, 35, 0.65);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(0, 255, 255, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(0, 245, 255, 0.05);
+}
+
+.sci-fi-glass:hover {
+  border-color: rgba(0, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 245, 255, 0.15);
+}
+
+.sci-fi-glass-card {
+  background: linear-gradient(135deg, rgba(15, 20, 35, 0.8) 0%, rgba(10, 15, 29, 0.9) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  border-radius: 12px;
+}
 
 /* ========================================
    IDE Shell
@@ -1085,4 +1113,949 @@ button { border: none; background: none; font-family: inherit; cursor: pointer; 
 
 @keyframes blink {
   50% { opacity: 0; }
+}/* ========================================
+   THEME DEFINITIONS
+   ======================================== */
+
+/* 1. Sci-Fi Command Center */
+body[data-theme="scifi"] {
+  --vsc-bg:              #050b14;
+  --vsc-editor-bg:       #06111f;
+  --vsc-sidebar-bg:      #081729;
+  --vsc-activitybar-bg:  #0a1d35;
+  --vsc-panel-bg:        #06111f;
+  --vsc-titlebar-bg:     #081729;
+  --vsc-menubar-bg:      #081729;
+  --vsc-statusbar-bg:    #00bfff;
+  --vsc-tab-active-bg:   #06111f;
+  --vsc-tab-inactive-bg: #0a1d35;
+  --vsc-input-bg:        #081729;
+  --vsc-dropdown-bg:     #081729;
+  --vsc-list-hover-bg:   #0f2b4c;
+  --vsc-list-active-bg:  #0059b3;
+  --vsc-breadcrumb-bg:   #06111f;
+
+  --vsc-border:          #00bfff40;
+  --vsc-border-light:    #00bfff60;
+  --vsc-tab-border:      #00bfff40;
+  --vsc-panel-border:    #00bfff40;
+  --vsc-sash:            #00bfff;
+
+  --vsc-fg:              #b3e0ff;
+  --vsc-fg-dim:          #4da6ff;
+  --vsc-fg-bright:       #ffffff;
+  --vsc-heading:         #00ffff;
+  --vsc-link:            #00ffff;
+  --vsc-accent:          #00ffff;
+  --vsc-font-family:     'Share Tech Mono', 'Orbitron', monospace;
+}
+body[data-theme="scifi"] .ide-shell {
+  background-image: 
+    linear-gradient(#00bfff10 1px, transparent 1px),
+    linear-gradient(90deg, #00bfff10 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* 2. Cyberpunk Neon */
+body[data-theme="cyberpunk"] {
+  --vsc-bg:              #090014;
+  --vsc-editor-bg:       #090014;
+  --vsc-sidebar-bg:      #13002b;
+  --vsc-activitybar-bg:  #1d0042;
+  --vsc-panel-bg:        #090014;
+  --vsc-titlebar-bg:     #13002b;
+  --vsc-menubar-bg:      #13002b;
+  --vsc-statusbar-bg:    #ff00ff;
+  --vsc-tab-active-bg:   #090014;
+  --vsc-tab-inactive-bg: #13002b;
+  --vsc-input-bg:        #26005c;
+  --vsc-dropdown-bg:     #13002b;
+  --vsc-list-hover-bg:   #3b008a;
+  --vsc-list-active-bg:  #6a00ff;
+  --vsc-breadcrumb-bg:   #090014;
+
+  --vsc-border:          #ff00ff50;
+  --vsc-border-light:    #00ffff50;
+  --vsc-tab-border:      #ff00ff50;
+  --vsc-panel-border:    #ff00ff50;
+  --vsc-sash:            #ff00ff;
+
+  --vsc-fg:              #e6ccff;
+  --vsc-fg-dim:          #b366ff;
+  --vsc-fg-bright:       #00ffff;
+  --vsc-heading:         #ff00ff;
+  --vsc-link:            #00ffff;
+  --vsc-accent:          #ff00ff;
+}
+body[data-theme="cyberpunk"] .ide-shell {
+  text-shadow: 0 0 5px rgba(255, 0, 255, 0.4);
+}
+
+/* 3. Space Explorer */
+body[data-theme="space"] {
+  --vsc-bg:              #010203;
+  --vsc-editor-bg:       #010203;
+  --vsc-sidebar-bg:      #050810;
+  --vsc-activitybar-bg:  #080c18;
+  --vsc-panel-bg:        #010203;
+  --vsc-titlebar-bg:     #050810;
+  --vsc-menubar-bg:      #050810;
+  --vsc-statusbar-bg:    #3e1c66;
+  --vsc-tab-active-bg:   #010203;
+  --vsc-tab-inactive-bg: #050810;
+  --vsc-input-bg:        #0a1020;
+  --vsc-dropdown-bg:     #050810;
+  --vsc-list-hover-bg:   #152040;
+  --vsc-list-active-bg:  #203060;
+  --vsc-breadcrumb-bg:   #010203;
+
+  --vsc-border:          #2a3a5a;
+  --vsc-border-light:    #3a4a6a;
+  --vsc-tab-border:      #1a2a4a;
+  --vsc-panel-border:    #2a3a5a;
+  --vsc-sash:            #6c4299;
+
+  --vsc-fg:              #c0d0f0;
+  --vsc-fg-dim:          #7080a0;
+  --vsc-fg-bright:       #ffffff;
+  --vsc-heading:         #aaccff;
+  --vsc-link:            #aaccff;
+  --vsc-accent:          #aaccff;
+}
+@keyframes stardrift {
+  from { background-position: 0 0; }
+  to { background-position: -1000px 500px; }
+}
+body[data-theme="space"] .ide-shell {
+  background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 4px),
+                    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 3px),
+                    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 4px);
+  background-size: 550px 550px, 350px 350px, 250px 250px;
+  background-position: 0 0, 40px 60px, 130px 270px;
+  animation: stardrift 60s linear infinite;
+  background-color: transparent !important;
+}
+
+/* 4. AI Hologram */
+body[data-theme="hologram"] {
+  --vsc-bg:              rgba(0, 10, 15, 0.7);
+  --vsc-editor-bg:       rgba(0, 15, 25, 0.6);
+  --vsc-sidebar-bg:      rgba(0, 25, 45, 0.7);
+  --vsc-activitybar-bg:  rgba(0, 35, 60, 0.8);
+  --vsc-panel-bg:        rgba(0, 15, 25, 0.6);
+  --vsc-titlebar-bg:     rgba(0, 25, 45, 0.8);
+  --vsc-menubar-bg:      rgba(0, 25, 45, 0.8);
+  --vsc-statusbar-bg:    rgba(0, 150, 255, 0.8);
+  --vsc-tab-active-bg:   rgba(0, 15, 25, 0.6);
+  --vsc-tab-inactive-bg: rgba(0, 25, 45, 0.7);
+  --vsc-input-bg:        rgba(0, 40, 70, 0.7);
+  --vsc-dropdown-bg:     rgba(0, 25, 45, 0.9);
+  --vsc-list-hover-bg:   rgba(0, 100, 200, 0.4);
+  --vsc-list-active-bg:  rgba(0, 150, 255, 0.6);
+  --vsc-breadcrumb-bg:   transparent;
+
+  --vsc-border:          rgba(0, 150, 255, 0.3);
+  --vsc-border-light:    rgba(0, 200, 255, 0.4);
+  --vsc-tab-border:      rgba(0, 150, 255, 0.2);
+  --vsc-panel-border:    rgba(0, 150, 255, 0.3);
+  --vsc-sash:            rgba(0, 200, 255, 0.8);
+
+  --vsc-fg:              #b3e6ff;
+  --vsc-fg-dim:          #66c2ff;
+  --vsc-fg-bright:       #ffffff;
+  --vsc-heading:         #ffffff;
+  --vsc-link:            #66c2ff;
+  --vsc-accent:          #0099ff;
+}
+body[data-theme="hologram"] .ide-shell {
+  backdrop-filter: blur(10px);
+  background: radial-gradient(circle at center, #001a33 0%, #000 100%);
+}
+
+/* 5. Steampunk */
+body[data-theme="steampunk"] {
+  --vsc-bg:              #2c1f15;
+  --vsc-editor-bg:       #3e2a1b;
+  --vsc-sidebar-bg:      #261910;
+  --vsc-activitybar-bg:  #1b110a;
+  --vsc-panel-bg:        #3e2a1b;
+  --vsc-titlebar-bg:     #261910;
+  --vsc-menubar-bg:      #261910;
+  --vsc-statusbar-bg:    #8b5a2b;
+  --vsc-tab-active-bg:   #3e2a1b;
+  --vsc-tab-inactive-bg: #261910;
+  --vsc-input-bg:        #4e3725;
+  --vsc-dropdown-bg:     #261910;
+  --vsc-list-hover-bg:   #5a3d28;
+  --vsc-list-active-bg:  #8b5a2b;
+  --vsc-breadcrumb-bg:   #3e2a1b;
+
+  --vsc-border:          #5a3d28;
+  --vsc-border-light:    #734f35;
+  --vsc-tab-border:      #261910;
+  --vsc-panel-border:    #5a3d28;
+  --vsc-sash:            #b87333;
+
+  --vsc-fg:              #d9c5b2;
+  --vsc-fg-dim:          #a68b72;
+  --vsc-fg-bright:       #f2e3d5;
+  --vsc-heading:         #f2e3d5;
+  --vsc-link:            #b87333;
+  --vsc-accent:          #b87333;
+  --vsc-font-family:     'Courier New', serif;
+}
+
+/* 6. Retro CRT Terminal */
+body[data-theme="crt"] {
+  --vsc-bg:              #000000;
+  --vsc-editor-bg:       #000000;
+  --vsc-sidebar-bg:      #050505;
+  --vsc-activitybar-bg:  #0a0a0a;
+  --vsc-panel-bg:        #000000;
+  --vsc-titlebar-bg:     #050505;
+  --vsc-menubar-bg:      #050505;
+  --vsc-statusbar-bg:    #003300;
+  --vsc-tab-active-bg:   #000000;
+  --vsc-tab-inactive-bg: #050505;
+  --vsc-input-bg:        #0a0a0a;
+  --vsc-dropdown-bg:     #050505;
+  --vsc-list-hover-bg:   #001a00;
+  --vsc-list-active-bg:  #004d00;
+  --vsc-breadcrumb-bg:   #000000;
+
+  --vsc-border:          #00ff0040;
+  --vsc-border-light:    #00ff0080;
+  --vsc-tab-border:      #00ff0040;
+  --vsc-panel-border:    #00ff0040;
+  --vsc-sash:            #00ff00;
+
+  --vsc-fg:              #00ff00;
+  --vsc-fg-dim:          #00aa00;
+  --vsc-fg-bright:       #55ff55;
+  --vsc-heading:         #00ff00;
+  --vsc-link:            #00ff00;
+  --vsc-accent:          #00ff00;
+  --vsc-font-family:     'VT323', 'Courier New', monospace;
+}
+@keyframes flicker {
+  0% { opacity: 0.95; }
+  5% { opacity: 0.85; }
+  10% { opacity: 0.95; }
+  15% { opacity: 1; }
+  100% { opacity: 1; }
+}
+body[data-theme="crt"] .ide-shell::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 999;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+body[data-theme="crt"] .ide-shell {
+  animation: flicker 0.15s infinite;
+  text-shadow: 0 0 2px rgba(0, 255, 0, 0.5);
+}
+
+/* 7. Matrix Theme */
+body[data-theme="matrix"] {
+  --vsc-bg:              #000000;
+  --vsc-editor-bg:       rgba(0, 0, 0, 0.85);
+  --vsc-sidebar-bg:      rgba(0, 10, 0, 0.9);
+  --vsc-activitybar-bg:  rgba(0, 15, 0, 0.95);
+  --vsc-panel-bg:        rgba(0, 0, 0, 0.85);
+  --vsc-titlebar-bg:     rgba(0, 10, 0, 0.9);
+  --vsc-menubar-bg:      rgba(0, 10, 0, 0.9);
+  --vsc-statusbar-bg:    #002200;
+  --vsc-tab-active-bg:   rgba(0, 0, 0, 0.85);
+  --vsc-tab-inactive-bg: rgba(0, 10, 0, 0.9);
+  --vsc-input-bg:        rgba(0, 20, 0, 0.9);
+  --vsc-dropdown-bg:     rgba(0, 10, 0, 0.9);
+  --vsc-list-hover-bg:   rgba(0, 40, 0, 0.5);
+  --vsc-list-active-bg:  rgba(0, 60, 0, 0.7);
+  --vsc-breadcrumb-bg:   transparent;
+
+  --vsc-border:          #004400;
+  --vsc-border-light:    #006600;
+  --vsc-tab-border:      #002200;
+  --vsc-panel-border:    #004400;
+  --vsc-sash:            #00ff00;
+
+  --vsc-fg:              #00cc00;
+  --vsc-fg-dim:          #008800;
+  --vsc-fg-bright:       #00ff00;
+  --vsc-heading:         #00ff00;
+  --vsc-link:            #00ff00;
+  --vsc-accent:          #00ff00;
+  --vsc-font-family:     'Courier New', monospace;
+}
+@keyframes matrix-bg {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 0% 1000px; }
+}
+body[data-theme="matrix"] .ide-shell {
+  background-color: black;
+  background-image: linear-gradient(0deg, transparent 24%, rgba(0, 255, 0, .3) 25%, rgba(0, 255, 0, .8) 26%, transparent 27%, transparent 74%, rgba(0, 255, 0, .3) 75%, rgba(0, 255, 0, .8) 76%, transparent 77%, transparent);
+  background-size: 50px 50px;
+  animation: matrix-bg 20s linear infinite;
+}
+
+/* 8. Glassmorphism */
+body[data-theme="glass"] {
+  --vsc-bg:              transparent;
+  --vsc-editor-bg:       rgba(255, 255, 255, 0.05);
+  --vsc-sidebar-bg:      rgba(255, 255, 255, 0.1);
+  --vsc-activitybar-bg:  rgba(255, 255, 255, 0.15);
+  --vsc-panel-bg:        rgba(255, 255, 255, 0.05);
+  --vsc-titlebar-bg:     rgba(255, 255, 255, 0.1);
+  --vsc-menubar-bg:      rgba(255, 255, 255, 0.1);
+  --vsc-statusbar-bg:    rgba(255, 255, 255, 0.2);
+  --vsc-tab-active-bg:   rgba(255, 255, 255, 0.1);
+  --vsc-tab-inactive-bg: rgba(255, 255, 255, 0.02);
+  --vsc-input-bg:        rgba(255, 255, 255, 0.1);
+  --vsc-dropdown-bg:     rgba(25, 25, 35, 0.8);
+  --vsc-list-hover-bg:   rgba(255, 255, 255, 0.15);
+  --vsc-list-active-bg:  rgba(255, 255, 255, 0.25);
+  --vsc-breadcrumb-bg:   transparent;
+
+  --vsc-border:          rgba(255, 255, 255, 0.1);
+  --vsc-border-light:    rgba(255, 255, 255, 0.2);
+  --vsc-tab-border:      rgba(255, 255, 255, 0.05);
+  --vsc-panel-border:    rgba(255, 255, 255, 0.1);
+  --vsc-sash:            rgba(255, 255, 255, 0.5);
+
+  --vsc-fg:              #e0e0e0;
+  --vsc-fg-dim:          #a0a0a0;
+  --vsc-fg-bright:       #ffffff;
+  --vsc-heading:         #ffffff;
+  --vsc-link:            #88ccff;
+  --vsc-accent:          #ffffff;
+}
+@keyframes gradient-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+body[data-theme="glass"] {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient-bg 15s ease infinite;
+}
+body[data-theme="glass"] .ide-shell {
+  backdrop-filter: blur(20px);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 9. Dark Hacker */
+body[data-theme="dark-hacker"] {
+  --vsc-bg:              #0a0a0a;
+  --vsc-editor-bg:       #0a0a0a;
+  --vsc-sidebar-bg:      #0f0f0f;
+  --vsc-activitybar-bg:  #141414;
+  --vsc-panel-bg:        #0a0a0a;
+  --vsc-titlebar-bg:     #0f0f0f;
+  --vsc-menubar-bg:      #0f0f0f;
+  --vsc-statusbar-bg:    #660000;
+  --vsc-tab-active-bg:   #0a0a0a;
+  --vsc-tab-inactive-bg: #0f0f0f;
+  --vsc-input-bg:        #141414;
+  --vsc-dropdown-bg:     #0f0f0f;
+  --vsc-list-hover-bg:   #1a1a1a;
+  --vsc-list-active-bg:  #2a0000;
+  --vsc-breadcrumb-bg:   #0a0a0a;
+
+  --vsc-border:          #1a1a1a;
+  --vsc-border-light:    #2a2a2a;
+  --vsc-tab-border:      #0f0f0f;
+  --vsc-panel-border:    #1a1a1a;
+  --vsc-sash:            #ff3333;
+
+  --vsc-fg:              #a0a0a0;
+  --vsc-fg-dim:          #606060;
+  --vsc-fg-bright:       #ffffff;
+  --vsc-heading:         #ff3333;
+  --vsc-link:            #ff3333;
+  --vsc-accent:          #ff3333;
+}
+/* 10. Event Horizon */
+body[data-theme="event-horizon"] {
+  --vsc-bg:              #0a0a0c;
+  --vsc-editor-bg:       #0a0a0c;
+  --vsc-sidebar-bg:      #0e0e10;
+  --vsc-activitybar-bg:  #131315;
+  --vsc-panel-bg:        #050506;
+  --vsc-titlebar-bg:     #131315;
+  --vsc-menubar-bg:      #131315;
+  --vsc-statusbar-bg:    #1c1b1d;
+  --vsc-tab-active-bg:   #0a0a0c;
+  --vsc-tab-inactive-bg: #1c1b1d;
+  --vsc-input-bg:        #201f21;
+  --vsc-dropdown-bg:     #2a2a2c;
+  --vsc-list-hover-bg:   #353437;
+  --vsc-list-active-bg:  rgba(0, 242, 255, 0.2);
+  --vsc-breadcrumb-bg:   #0a0a0c;
+
+  --vsc-border:          #3a494b;
+  --vsc-border-light:    #849495;
+  --vsc-tab-border:      #3a494b;
+  --vsc-panel-border:    #3a494b;
+  --vsc-sash:            #00f2ff;
+
+  --vsc-fg:              #e5e1e4;
+  --vsc-fg-dim:          #b9cacb;
+  --vsc-fg-bright:       #e1fdff;
+  --vsc-heading:         #e1fdff;
+  --vsc-link:            #00dbe7;
+  --vsc-accent:          #00f2ff;
+  --vsc-font-family:     'Inter', sans-serif;
+  --vsc-mono:            'JetBrains Mono', monospace;
+}
+@keyframes eh-scanline {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+body[data-theme="event-horizon"] .ide-shell::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 242, 255, 0.05);
+  z-index: 999;
+  pointer-events: none;
+  animation: eh-scanline 8s linear infinite;
+}
+body[data-theme="event-horizon"] .ide-shell {
+  box-shadow: inset 0 0 40px rgba(0, 242, 255, 0.05);
+}
+/* ========================================
+   CINEMATIC EFFECTS UPGRADE
+   ======================================== */
+
+/* Global Transitions */
+body[data-theme] * {
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 1. Sci-Fi - Scanning Laser & Vignette */
+@keyframes scifi-scan {
+  0% { top: -10%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 110%; opacity: 0; }
+}
+body[data-theme="scifi"] .ide-shell::after {
+  content: " ";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  box-shadow: inset 0 0 100px rgba(0, 191, 255, 0.4);
+  pointer-events: none;
+  z-index: 9998;
+}
+body[data-theme="scifi"] .ide-shell::before {
+  content: " ";
+  position: absolute;
+  width: 100%; height: 3px;
+  background: #00ffff;
+  box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+  animation: scifi-scan 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* 2. Cyberpunk - Glitch & Heavy Neon */
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.5; box-shadow: none; }
+}
+body[data-theme="cyberpunk"] .ide-shell {
+  box-shadow: inset 0 0 80px rgba(255, 0, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.2);
+  animation: neon-flicker 10s infinite;
+}
+body[data-theme="cyberpunk"] .menubar-brand-text {
+  text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff;
+  animation: neon-flicker 3s infinite;
+}
+
+/* 3. Space - Deep Nebula & Parallax */
+@keyframes nebula-pulse {
+  0% { box-shadow: inset 0 0 150px rgba(108, 66, 153, 0.2); }
+  50% { box-shadow: inset 0 0 250px rgba(108, 66, 153, 0.5); }
+  100% { box-shadow: inset 0 0 150px rgba(108, 66, 153, 0.2); }
+}
+body[data-theme="space"] .ide-shell::after {
+  content: " ";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  animation: nebula-pulse 10s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* 4. AI Hologram - Floating Tilt & Data Pulse */
+@keyframes data-pulse {
+  0% { border-color: rgba(0, 150, 255, 0.2); }
+  50% { border-color: rgba(0, 200, 255, 0.8); box-shadow: 0 0 20px rgba(0, 200, 255, 0.4); }
+  100% { border-color: rgba(0, 150, 255, 0.2); }
+}
+body[data-theme="hologram"] .ide-shell {
+  transform: perspective(2000px) rotateX(1deg);
+  transform-origin: bottom;
+  box-shadow: 0 -20px 100px rgba(0, 150, 255, 0.2);
+}
+body[data-theme="hologram"] .ide-sidebar, body[data-theme="hologram"] .ide-editor {
+  animation: data-pulse 4s infinite;
+}
+
+/* 5. Steampunk - Gaslight Flicker & Sepia Overlay */
+@keyframes gaslight {
+  0%, 100% { opacity: 0.8; box-shadow: inset 0 0 100px rgba(139, 90, 43, 0.5); }
+  50% { opacity: 0.95; box-shadow: inset 0 0 120px rgba(184, 115, 51, 0.7); }
+}
+body[data-theme="steampunk"] .ide-shell::after {
+  content: " ";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(transparent 50%, rgba(38, 25, 16, 0.8) 100%);
+  animation: gaslight 5s infinite alternate;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* 6. CRT - Curvature & Chromatic Aberration */
+body[data-theme="crt"] {
+  padding: 2vw;
+  background-color: #050505;
+}
+body[data-theme="crt"] .ide-shell {
+  border-radius: 20px;
+  box-shadow: inset 0 0 60px rgba(0,0,0,0.9), 0 0 30px rgba(0, 255, 0, 0.2);
+  overflow: hidden;
+  text-shadow: 1px 0px 1px rgba(255,0,0,0.5), -1px 0px 1px rgba(0,0,255,0.5), 0 0 3px rgba(0,255,0,0.8);
+}
+
+/* 7. Matrix - Intense Glow */
+body[data-theme="matrix"] .ide-shell {
+  box-shadow: inset 0 0 80px rgba(0, 255, 0, 0.2);
+}
+body[data-theme="matrix"] * {
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.6);
+}
+
+/* 8. Glass - Ambient Light Orbs */
+@keyframes orb-float {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  50% { transform: translate(100px, 100px) scale(1.5); opacity: 0.8; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+}
+body[data-theme="glass"]::before {
+  content: " ";
+  position: absolute;
+  top: -20%; left: -10%;
+  width: 50%; height: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 60%);
+  filter: blur(100px);
+  animation: orb-float 15s infinite;
+  z-index: -1;
+}
+
+/* 9. Event Horizon - Black Hole Distortion */
+@keyframes event-horizon-pulse {
+  0% { box-shadow: inset 0 0 50px rgba(0, 242, 255, 0.1); }
+  50% { box-shadow: inset 0 0 150px rgba(0, 242, 255, 0.3), inset 0 0 50px rgba(182, 0, 248, 0.2); }
+  100% { box-shadow: inset 0 0 50px rgba(0, 242, 255, 0.1); }
+}
+body[data-theme="event-horizon"] .ide-shell {
+  animation: event-horizon-pulse 6s ease-in-out infinite;
+}
+/* ========================================
+   ULTRA-CINEMATIC EFFECTS UPGRADE (V2)
+   ======================================== */
+
+/* 1. EVENT HORIZON - Accretion Disk & Falling Stars */
+@keyframes accretion-disk {
+  0% { transform: rotate(0deg) scale(1); filter: hue-rotate(0deg); }
+  50% { transform: rotate(180deg) scale(1.1); filter: hue-rotate(30deg); }
+  100% { transform: rotate(360deg) scale(1); filter: hue-rotate(0deg); }
+}
+@keyframes star-suck {
+  0% { box-shadow: 100px 100px 2px #fff, -100px -100px 2px #00f2ff, 200px -50px 2px #ebb2ff, -200px 50px 2px #fff; transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { box-shadow: 0px 0px 5px #fff, 0px 0px 5px #00f2ff, 0px 0px 5px #ebb2ff, 0px 0px 5px #fff; transform: scale(0.1) rotate(180deg); opacity: 0; }
+}
+body[data-theme="event-horizon"]::before {
+  content: " ";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 150vw; height: 150vw;
+  margin-top: -75vw; margin-left: -75vw;
+  background: conic-gradient(from 0deg, transparent 0%, rgba(0, 242, 255, 0.1) 25%, transparent 50%, rgba(182, 0, 248, 0.1) 75%, transparent 100%);
+  animation: accretion-disk 20s linear infinite;
+  z-index: -2;
+  pointer-events: none;
+}
+body[data-theme="event-horizon"]::after {
+  content: " ";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  animation: star-suck 3s ease-in infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 2. GLASSMORPHISM - Multi-Orbs & Frosted Rim Light */
+@keyframes orb-float-2 {
+  0% { transform: translate(100vw, 0) scale(1); opacity: 0.3; }
+  50% { transform: translate(0, 100vh) scale(2); opacity: 0.6; }
+  100% { transform: translate(100vw, 0) scale(1); opacity: 0.3; }
+}
+body[data-theme="glass"]::after {
+  content: " ";
+  position: absolute;
+  bottom: -20%; right: -10%;
+  width: 60%; height: 60%;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.6) 0%, transparent 70%);
+  filter: blur(120px);
+  animation: orb-float-2 20s ease-in-out infinite alternate;
+  z-index: -1;
+  pointer-events: none;
+}
+body[data-theme="glass"] .ide-shell {
+  border-top: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: inset 0 20px 40px -20px rgba(255, 255, 255, 0.4), 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 3. AI HOLOGRAM - Holographic Grid & Glitch Disruptions */
+@keyframes holo-grid-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 40px; }
+}
+@keyframes holo-glitch {
+  0%, 96%, 98%, 100% { transform: perspective(2000px) rotateX(1deg) skewX(0deg); filter: hue-rotate(0deg); opacity: 1; }
+  97% { transform: perspective(2000px) rotateX(2deg) skewX(5deg) scale(1.02); filter: hue-rotate(90deg); opacity: 0.8; }
+  99% { transform: perspective(2000px) rotateX(0deg) skewX(-5deg) scale(0.98); filter: hue-rotate(-90deg); opacity: 0.9; }
+}
+body[data-theme="hologram"] {
+  background-image: 
+    linear-gradient(rgba(0, 150, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 150, 255, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: holo-grid-move 4s linear infinite;
+}
+body[data-theme="hologram"] .ide-shell {
+  animation: holo-glitch 8s infinite !important;
+}
+body[data-theme="hologram"]::after {
+  content: " ";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(0deg, rgba(0,150,255,0.05) 0px, rgba(0,150,255,0.05) 1px, transparent 1px, transparent 4px);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* 4. DARK HACKER - Breach Warning & Red Static */
+@keyframes hacker-breach {
+  0%, 90%, 100% { box-shadow: inset 0 0 0px rgba(255, 0, 0, 0); }
+  95% { box-shadow: inset 0 0 150px rgba(255, 0, 0, 0.6); }
+}
+@keyframes hacker-static {
+  0% { background-position: 0 0; }
+  100% { background-position: 100px 100px; }
+}
+body[data-theme="dark-hacker"] .ide-shell {
+  animation: hacker-breach 15s infinite;
+  border: 1px solid rgba(255, 0, 0, 0.2) !important;
+}
+body[data-theme="dark-hacker"]::after {
+  content: " ";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: radial-gradient(rgba(255,0,0,0.1) 1px, transparent 1px);
+  background-size: 3px 3px;
+  animation: hacker-static 0.2s linear infinite;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 9999;
+}
+/* ========================================
+   12. FUTURISTIC (Cyberdeck Terminal)
+   ======================================== */
+body[data-theme="futuristic"] {
+  --vsc-bg:              #02080a;
+  --vsc-editor-bg:       rgba(2, 8, 10, 0.85);
+  --vsc-sidebar-bg:      rgba(4, 15, 19, 0.9);
+  --vsc-activitybar-bg:  #02080a;
+  --vsc-panel-bg:        #040f13;
+  --vsc-titlebar-bg:     #040f13;
+  --vsc-menubar-bg:      #040f13;
+  --vsc-statusbar-bg:    #00333d;
+  --vsc-tab-active-bg:   #040f13;
+  --vsc-tab-inactive-bg: #02080a;
+  --vsc-input-bg:        #07171d;
+  --vsc-dropdown-bg:     #040f13;
+  --vsc-list-hover-bg:   rgba(0, 243, 255, 0.1);
+  --vsc-list-active-bg:  rgba(0, 243, 255, 0.25);
+  --vsc-breadcrumb-bg:   transparent;
+
+  --vsc-border:          rgba(0, 243, 255, 0.3);
+  --vsc-border-light:    rgba(0, 243, 255, 0.6);
+  --vsc-tab-border:      rgba(0, 243, 255, 0.3);
+  --vsc-panel-border:    rgba(0, 243, 255, 0.5);
+  --vsc-sash:            #00f3ff;
+
+  --vsc-fg:              #b3f0ff;
+  --vsc-fg-dim:          #66d9ff;
+  --vsc-fg-bright:       #00f3ff;
+  --vsc-heading:         #00f3ff;
+  --vsc-link:            #00f3ff;
+  --vsc-accent:          #00f3ff;
+  --vsc-font-family:     'Share Tech Mono', 'Courier New', monospace;
+}
+
+@keyframes futuristic-data {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 0% 1000px; }
+}
+body[data-theme="futuristic"] .ide-shell {
+  background-color: #02080a;
+  background-image: linear-gradient(0deg, transparent 24%, rgba(0, 243, 255, .15) 25%, rgba(0, 243, 255, .4) 26%, transparent 27%, transparent 74%, rgba(0, 243, 255, .15) 75%, rgba(0, 243, 255, .4) 76%, transparent 77%, transparent);
+  background-size: 60px 60px;
+  animation: futuristic-data 15s linear infinite;
+  border: 1px solid rgba(0, 243, 255, 0.5) !important;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.2), inset 0 0 30px rgba(0, 243, 255, 0.1) !important;
+}
+
+/* Circuit board pattern for sidebar */
+body[data-theme="futuristic"] .ide-sidebar {
+  background-image: 
+    linear-gradient(90deg, rgba(0,243,255,0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0,243,255,0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Glowing text everywhere */
+body[data-theme="futuristic"] * {
+  text-shadow: 0 0 4px rgba(0, 243, 255, 0.3);
+}
+
+/* Make primary buttons glow */
+body[data-theme="futuristic"] .menubar-run-btn, 
+body[data-theme="futuristic"] button.bg-blue-600,
+body[data-theme="futuristic"] button.bg-\[\#007acc\] {
+  background-color: rgba(0, 243, 255, 0.2) !important;
+  border: 1px solid #00f3ff !important;
+  color: #00f3ff !important;
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.4) !important;
+  text-shadow: 0 0 5px #00f3ff !important;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+body[data-theme="futuristic"] .menubar-run-btn:hover,
+body[data-theme="futuristic"] button.bg-blue-600:hover,
+body[data-theme="futuristic"] button.bg-\[\#007acc\]:hover {
+  background-color: rgba(0, 243, 255, 0.4) !important;
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.6) !important;
+}
+
+/* Special styling for Activity Bar Icons to match the left sidebar of the image */
+body[data-theme="futuristic"] .activitybar-item {
+  border-left: 2px solid transparent;
+}
+body[data-theme="futuristic"] .activitybar-item.active {
+  border-left: 2px solid #00f3ff !important;
+  color: #00f3ff !important;
+  background-color: rgba(0, 243, 255, 0.1) !important;
+}
+/* ========================================
+   FUTURISTIC: EXTREME CINEMATIC EFFECTS
+   ======================================== */
+
+/* 1. Radar Sweep / Scanner */
+@keyframes radar-sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+body[data-theme="futuristic"]::before {
+  content: " ";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 200vw; height: 200vw;
+  margin-top: -100vw; margin-left: -100vw;
+  background: conic-gradient(from 0deg, transparent 0%, transparent 60%, rgba(0, 243, 255, 0.05) 90%, rgba(0, 243, 255, 0.3) 100%);
+  animation: radar-sweep 4s linear infinite;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* 2. Deep Vignette & Inner CRT Glow */
+body[data-theme="futuristic"] {
+  background: radial-gradient(circle at center, #02080a 40%, #000000 100%);
+}
+body[data-theme="futuristic"] .ide-shell {
+  box-shadow: 0 0 50px rgba(0, 243, 255, 0.2), inset 0 0 100px rgba(0, 243, 255, 0.1), inset 0 0 20px #000 !important;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* 3. Tech HUD Brackets (Four Corners) */
+body[data-theme="futuristic"] .ide-shell::before {
+  content: " ";
+  position: absolute;
+  top: 10px; left: 10px; right: 10px; bottom: 10px;
+  border-top: 2px solid rgba(0, 243, 255, 0.5);
+  border-bottom: 2px solid rgba(0, 243, 255, 0.5);
+  border-left: 2px solid rgba(0, 243, 255, 0.5);
+  border-right: 2px solid rgba(0, 243, 255, 0.5);
+  mask-image: linear-gradient(to right, black 20px, transparent 20px, transparent calc(100% - 20px), black calc(100% - 20px)), linear-gradient(to bottom, black 20px, transparent 20px, transparent calc(100% - 20px), black calc(100% - 20px));
+  -webkit-mask-image: linear-gradient(to right, black 20px, transparent 20px, transparent calc(100% - 20px), black calc(100% - 20px)), linear-gradient(to bottom, black 20px, transparent 20px, transparent calc(100% - 20px), black calc(100% - 20px));
+  -webkit-mask-composite: source-in;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* 4. Scanning Grid Line */
+@keyframes cyber-scan {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+body[data-theme="futuristic"] .ide-shell::after {
+  content: " ";
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: #00f3ff;
+  box-shadow: 0 0 15px #00f3ff, 0 0 30px #00f3ff;
+  animation: cyber-scan 6s linear infinite;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* 5. Terminal / Console Micro-glitch */
+@keyframes micro-glitch {
+  0%, 98%, 100% { transform: translate(0, 0); filter: hue-rotate(0deg); opacity: 1; }
+  99% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); opacity: 0.8; }
+}
+body[data-theme="futuristic"] .ide-sidebar,
+body[data-theme="futuristic"] .ide-panel {
+  animation: micro-glitch 5s infinite;
+}
+
+/* ========================================
+   FUTURISTIC: V3 CINEMATIC GRAPHICS
+   ======================================== */
+
+/* 1. 3D Console Perspective for Sidebar */
+body[data-theme="futuristic"] .ide-sidebar {
+  transform: perspective(1000px) rotateY(5deg);
+  transform-origin: left;
+  border-right: 2px solid rgba(0, 243, 255, 0.4);
+  box-shadow: 15px 0 30px rgba(0, 243, 255, 0.05);
+  z-index: 50;
+}
+
+/* 2. HUD Crosshair (Center Screen) */
+@keyframes hud-pulse {
+  0% { transform: scale(0.95); opacity: 0.2; }
+  50% { transform: scale(1.05); opacity: 0.5; }
+  100% { transform: scale(0.95); opacity: 0.2; }
+}
+body[data-theme="futuristic"] .ide-shell::before {
+  content: " ";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 300px; height: 300px;
+  margin-top: -150px; margin-left: -150px;
+  border: 1px dashed rgba(0, 243, 255, 0.4);
+  border-radius: 50%;
+  animation: hud-pulse 3s infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+body[data-theme="futuristic"] .ide-shell::after {
+  content: " ";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 40px; height: 40px;
+  margin-top: -20px; margin-left: -20px;
+  border: 2px solid rgba(0, 243, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 20px #00f3ff;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 3. Hexagon Background Grid */
+body[data-theme="futuristic"] {
+  background-image: 
+    linear-gradient(30deg, #02080a 12%, transparent 12.5%, transparent 87%, #02080a 87.5%, #02080a), 
+    linear-gradient(150deg, #02080a 12%, transparent 12.5%, transparent 87%, #02080a 87.5%, #02080a), 
+    linear-gradient(30deg, #02080a 12%, transparent 12.5%, transparent 87%, #02080a 87.5%, #02080a), 
+    linear-gradient(150deg, #02080a 12%, transparent 12.5%, transparent 87%, #02080a 87.5%, #02080a), 
+    linear-gradient(60deg, rgba(0, 243, 255, 0.05) 25%, transparent 25.5%, transparent 75%, rgba(0, 243, 255, 0.05) 75%, rgba(0, 243, 255, 0.05)), 
+    linear-gradient(60deg, rgba(0, 243, 255, 0.05) 25%, transparent 25.5%, transparent 75%, rgba(0, 243, 255, 0.05) 75%, rgba(0, 243, 255, 0.05));
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+}
+
+/* 4. Massive Matrix Rain (Cyan) */
+@keyframes cyber-matrix-rain {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 0% 1000px; }
+}
+body[data-theme="futuristic"]::after {
+  content: " ";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: linear-gradient(0deg, transparent 24%, rgba(0, 243, 255, .1) 25%, rgba(0, 243, 255, .5) 26%, transparent 27%, transparent 74%, rgba(0, 243, 255, .1) 75%, rgba(0, 243, 255, .5) 76%, transparent 77%, transparent);
+  background-size: 30px 50px;
+  animation: cyber-matrix-rain 8s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ========================================
+   FUTURISTIC: MONACO EDITOR MATRIX RAIN
+   ======================================== */
+
+/* Force Monaco editor background to be transparent */
+body[data-theme="futuristic"] .monaco-editor,
+body[data-theme="futuristic"] .monaco-editor-background,
+body[data-theme="futuristic"] .monaco-editor .margin {
+  background-color: transparent !important;
+}
+
+body[data-theme="futuristic"] .ide-editor-container {
+  position: relative;
+  background-color: #02080a !important;
+}
+
+/* Apply matrix rain inside editor container */
+body[data-theme="futuristic"] .ide-editor-container::before {
+  content: " ";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: linear-gradient(0deg, transparent 24%, rgba(0, 243, 255, .1) 25%, rgba(0, 243, 255, .4) 26%, transparent 27%, transparent 74%, rgba(0, 243, 255, .1) 75%, rgba(0, 243, 255, .4) 76%, transparent 77%, transparent);
+  background-size: 30px 50px;
+  animation: cyber-matrix-rain 8s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure code text stays above the rain */
+body[data-theme="futuristic"] .monaco-editor .view-lines,
+body[data-theme="futuristic"] .monaco-editor .view-overlays {
+  position: relative;
+  z-index: 10;
 }

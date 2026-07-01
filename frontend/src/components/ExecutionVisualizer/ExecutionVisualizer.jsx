@@ -30,16 +30,20 @@ export default function ExecutionVisualizer({
   const hasEvents = totalSteps > 0;
 
   return (
-    <div className="exec-viz flex flex-col h-full bg-[#1e1e2e] text-white rounded-lg overflow-hidden border border-gray-700 relative">
+    <div className="exec-viz flex flex-col h-full bg-transparent text-white rounded-lg overflow-hidden border border-[#00F5FF]/20 relative mx-2 mb-2 sci-fi-glass shadow-[0_0_20px_rgba(0,245,255,0.05)]">
       {/* Header */}
-      <div className="panel-tabs flex border-b border-gray-800 bg-[#181825] px-4 py-2 justify-between items-center">
-        <div className="panel-tab active flex items-center gap-2 text-sm font-semibold text-blue-400">
-          <Sparkles size={14} />
-          EXECUTION VISUALIZER
+      <div className="panel-tabs flex border-b border-[#00F5FF]/20 bg-transparent px-4 py-3 justify-between items-center shadow-[0_0_15px_rgba(0,245,255,0.05)]">
+        <div className="panel-tab active flex items-center gap-2 text-[11px] font-bold text-[#00F5FF] tracking-[2px]">
+          <Sparkles size={14} className="text-[#00F5FF]" style={{ filter: 'drop-shadow(0 0 5px #00F5FF)' }} />
+          EXECUTION MATRIX
         </div>
-        <div className="flex items-center gap-2 text-xs">
-          <span style={{ color: '#4ade80', fontSize: 10 }}>●</span>
-          <span style={{ color: '#4ade80', fontWeight: 600, letterSpacing: '0.5px' }}>LIVE</span>
+        <div className="flex items-center gap-2 text-[10px]">
+          <motion.span 
+            animate={{ opacity: [1, 0.2, 1], scale: [1, 1.2, 1] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            style={{ color: '#00FFA3', fontSize: 10, filter: 'drop-shadow(0 0 5px #00FFA3)' }}
+          >●</motion.span>
+          <span style={{ color: '#00FFA3', fontWeight: 700, letterSpacing: '1px', textShadow: '0 0 5px rgba(0,255,163,0.5)' }}>LIVE NEURAL LINK</span>
         </div>
       </div>
 
@@ -59,11 +63,11 @@ export default function ExecutionVisualizer({
 
       {/* Current line indicator */}
       {hasEvents && activeLine !== null && (
-        <div className="exec-line-indicator px-4 py-2 bg-[#11111b] border-y border-gray-800 flex items-center gap-3">
-          <span className="bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded text-xs font-mono">
+        <div className="exec-line-indicator px-4 py-2 bg-[rgba(0,245,255,0.05)] border-y border-[#00F5FF]/20 flex items-center gap-3">
+          <span className="bg-[#00F5FF]/20 text-[#00F5FF] px-2 py-0.5 rounded text-xs font-mono font-bold shadow-[0_0_10px_rgba(0,245,255,0.2)]">
             L{activeLine}
           </span>
-          <code className="text-sm text-gray-300 font-mono">
+          <code className="text-sm text-[#00F5FF] font-mono" style={{ textShadow: '0 0 5px rgba(0,245,255,0.5)' }}>
             {activeCode}
           </code>
         </div>
@@ -76,15 +80,49 @@ export default function ExecutionVisualizer({
       <div className="exec-viz-body flex-1 overflow-y-auto p-4 relative">
         {!hasEvents ? (
           /* EMPTY STATE */
-          <div className="flex flex-col items-center justify-center h-full text-gray-500 space-y-4 opacity-70">
-            <div className="text-5xl">⚡</div>
-            <div className="text-sm">Run your code to see the execution visualized step-by-step</div>
+          <div className="flex flex-col items-center justify-center h-full text-[#8b949e] space-y-4 relative overflow-hidden w-full">
+            {/* Particles */}
+            {[...Array(12)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute bg-[#00F5FF] rounded-full opacity-0"
+                style={{
+                  width: Math.random() * 6 + 2,
+                  height: Math.random() * 6 + 2,
+                  left: `${Math.random() * 100}%`,
+                  bottom: `-10%`,
+                  boxShadow: '0 0 10px #00F5FF'
+                }}
+                animate={{
+                  y: [0, -200],
+                  x: [0, (Math.random() - 0.5) * 50],
+                  opacity: [0, 0.6, 0],
+                }}
+                transition={{
+                  duration: Math.random() * 3 + 3,
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: Math.random() * 4,
+                }}
+              />
+            ))}
+            
+            {/* The main bolt */}
+            <motion.div 
+              animate={{ 
+                y: [0, -15, 0],
+                filter: ['drop-shadow(0 0 10px rgba(0,245,255,0.4))', 'drop-shadow(0 0 40px rgba(0,245,255,0.8))', 'drop-shadow(0 0 10px rgba(0,245,255,0.4))']
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="text-7xl mb-4 text-[#00F5FF] z-10"
+            >⚡</motion.div>
+            <div className="text-[13px] z-10 font-bold tracking-[2px] text-[#00F5FF]/80 uppercase">Awaiting Neural Sequence</div>
           </div>
         ) : (
           /* ACTIVE STATE: The New Animation Panels */
-          <div className="flex flex-col h-full">
+            <div className="flex flex-col h-full">
             {/* Top Section: RAM Memory (Arrays, Vectors, Strings, Objects) */}
-            <div className="flex-1 bg-[#181825] border border-gray-700 rounded-md overflow-hidden min-h-[16rem]">
+            <div className="flex-1 bg-transparent border border-[#00F5FF]/20 rounded-lg overflow-hidden min-h-[16rem] sci-fi-glass shadow-[inset_0_0_20px_rgba(0,245,255,0.05)] relative">
               <MemoryPanel variables={variables} highlightVar={highlightVar} />
             </div>
           </div>
@@ -97,26 +135,26 @@ export default function ExecutionVisualizer({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-8"
+              className="absolute inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-8"
             >
-              <div className="bg-[#1e1e2e] border border-red-500/50 rounded-xl shadow-2xl overflow-hidden max-w-2xl w-full">
-                <div className="bg-red-500/20 px-6 py-4 flex items-center gap-3 border-b border-red-500/30">
-                  <AlertTriangle className="text-red-400" size={24} />
-                  <h3 className="text-red-400 font-bold text-lg m-0">{execError.type || 'Runtime Error'}</h3>
+              <div className="bg-[#0A0F1D] border border-[#FF3E6C] rounded-xl shadow-[0_0_50px_rgba(255,62,108,0.3)] overflow-hidden max-w-2xl w-full">
+                <div className="bg-[#FF3E6C]/20 px-6 py-4 flex items-center gap-3 border-b border-[#FF3E6C]/30">
+                  <AlertTriangle className="text-[#FF3E6C]" size={24} style={{ filter: 'drop-shadow(0 0 5px #FF3E6C)' }} />
+                  <h3 className="text-[#FF3E6C] font-bold text-lg m-0 uppercase tracking-widest">{execError.type || 'System Failure'}</h3>
                 </div>
-                <div className="p-6 text-gray-300">
-                  <p className="mb-4">{execError.message}</p>
+                <div className="p-6 text-[#8b949e]">
+                  <p className="mb-4 text-white">{execError.message}</p>
                   {execError.traceback && (
-                    <pre className="bg-black/40 p-4 rounded text-xs font-mono text-gray-400 overflow-x-auto whitespace-pre-wrap">
+                    <pre className="bg-black/60 border border-[#FF3E6C]/20 p-4 rounded-lg text-xs font-mono text-[#FF3E6C] overflow-x-auto whitespace-pre-wrap shadow-[inset_0_0_10px_rgba(255,62,108,0.1)]">
                       {execError.traceback.join('')}
                     </pre>
                   )}
                   <div className="mt-6 flex justify-end">
                     <button 
                       onClick={onReset}
-                      className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded font-medium transition-colors"
+                      className="bg-[#FF3E6C]/20 hover:bg-[#FF3E6C]/40 border border-[#FF3E6C] text-[#FF3E6C] px-6 py-2 rounded-full font-bold uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(255,62,108,0.2)] hover:shadow-[0_0_25px_rgba(255,62,108,0.4)] hover:scale-105"
                     >
-                      Reset Execution
+                      Reboot Matrix
                     </button>
                   </div>
                 </div>

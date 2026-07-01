@@ -3,13 +3,14 @@ import { Terminal as Xterm } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
 import 'xterm/css/xterm.css';
 
-const TerminalPanel = ({ ws, execState, play, output }) => {
+const TerminalPanel = ({ ws, play, output }) => {
   const terminalRef = useRef(null);
   const xtermRef = useRef(null);
   const fitAddonRef = useRef(null);
   
   // Local state to keep track of the user's input line
   const inputBufferRef = useRef('');
+  const previousOutputLength = useRef(0);
   
   // Initialize Xterm
   useEffect(() => {
@@ -17,14 +18,15 @@ const TerminalPanel = ({ ws, execState, play, output }) => {
 
     const term = new Xterm({
       theme: {
-        background: '#0d0d14',
-        foreground: '#cccccc',
-        cursor: '#ffffff',
+        background: '#04070D', // Slightly darker than transparent to ensure legibility
+        foreground: '#00F5FF',
+        cursor: '#00FFA3',
       },
       fontFamily: '"Fira Code", monospace',
-      fontSize: 14,
+      fontSize: 13,
       cursorBlink: true,
       convertEol: true,
+      allowTransparency: true,
     });
 
     const fitAddon = new FitAddon();
@@ -76,40 +78,32 @@ const TerminalPanel = ({ ws, execState, play, output }) => {
   // Sync execution state / output to terminal
   useEffect(() => {
     if (!xtermRef.current) return;
-    
     const term = xtermRef.current;
-    term.clear();
     
-    // Write interactive output
-    execState.consoleLines.forEach((line) => {
-      if (line.isInputPrompt) {
-        term.write(`\x1b[1;33m${line.text}\x1b[0m`); // Bold yellow for prompts
-      } else {
-        term.writeln(line.text);
-      }
-    });
+    // When output resets completely (e.g., Run button clicked), clear the terminal
+    if (output === '') {
+       term.clear();
+       previousOutputLength.current = 0;
+       term.writeln("\x1b[38;2;0;245;255m[ NEURAL TERMINAL ONLINE ]\x1b[0m\n\x1b[38;2;139;148;158mRun code to execute neural pathways...\x1b[0m");
+       return;
+    }
 
-    // Write final static output if any (e.g. from C++ or error)
-    if (output) {
-      term.writeln('');
-      // Red for error, standard for output (assumes error if execution had error, but output prop might just be string)
-      // If output starts with tracebacks or '❌', color it
-      if (output.includes('❌') || output.toLowerCase().includes('error')) {
-         term.writeln(`\x1b[1;31m${output}\x1b[0m`);
-      } else {
-         term.writeln(output);
-      }
+    // Only write the newly added chunk of output
+    if (output.length > previousOutputLength.current) {
+       const newChunk = output.slice(previousOutputLength.current);
+       if (newChunk.includes('❌') || newChunk.toLowerCase().includes('error')) {
+          term.write(`\x1b[1;31m${newChunk}\x1b[0m`);
+       } else {
+          term.write(newChunk);
+       }
+       previousOutputLength.current = output.length;
     }
-    
-    if (execState.consoleLines.length === 0 && !output) {
-      term.writeln("\x1b[38;5;240mRun code to see output here...\x1b[0m");
-    }
-  }, [execState.consoleLines, output]);
+  }, [output]);
 
   return (
-    <div className="w-full h-full flex flex-col bg-[#0d0d14]">
-      {/* Terminal container */}
-      <div className="flex-1 w-full h-full p-2 overflow-hidden" ref={terminalRef}></div>
+    <div className="w-full h-full p-2 bg-transparent sci-fi-glass rounded-lg border border-[#00F5FF]/10 shadow-[inset_0_0_20px_rgba(0,245,255,0.05)] relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(0,245,255,0.05)_0%,transparent_100%)] z-0" />
+      <div ref={terminalRef} className="w-full h-full relative z-10" />
     </div>
   );
 };

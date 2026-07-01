@@ -19,7 +19,6 @@ export default function useExecutionPlayback(events = []) {
   const [activeCode, setActiveCode] = useState('');
   const [variables, setVariables] = useState(new Map()); // name -> {name, value, dtype, size, addr, scope, animState}
   const [callStack, setCallStack] = useState([]);          // [{name, args, line}]
-  const [consoleLines, setConsoleLines] = useState([]);     // [{text, sourceVars, step}]
   const [activeScope, setActiveScope] = useState('<module>');
   const [lastEventType, setLastEventType] = useState(null);
   const [highlightVar, setHighlightVar] = useState(null);   // variable name to flash
@@ -137,11 +136,6 @@ export default function useExecutionPlayback(events = []) {
       }
 
       case 'print_output':
-        setConsoleLines(prev => [...prev, {
-          text: event.output_text || '',
-          sourceVars: event.source_vars || [],
-          step: event.step,
-        }]);
         setDataFlowEvent({
           type: 'print',
           sourceVars: event.source_vars || [],
@@ -150,12 +144,6 @@ export default function useExecutionPlayback(events = []) {
         break;
 
       case 'input_request':
-        setConsoleLines(prev => [...prev, {
-          text: event.prompt || '',
-          sourceVars: [],
-          step: event.step,
-          isInputPrompt: true,
-        }]);
         setIsPlaying(false);
         if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
         break;
@@ -200,7 +188,6 @@ export default function useExecutionPlayback(events = []) {
     setActiveCode('');
     setVariables(new Map());
     setCallStack([]);
-    setConsoleLines([]);
     setActiveScope('<module>');
     setHighlightVar(null);
     setDataFlowEvent(null);
@@ -210,13 +197,9 @@ export default function useExecutionPlayback(events = []) {
     if (targetStep < 0 || !events.length) return;
 
     // Replay all events up to targetStep without animations
-    const vars = new Map();
-    const stack = [];
-    const lines = [];
-    let line = null, code = '', scope = '<module>';
-
     for (let i = 0; i <= Math.min(targetStep, events.length - 1); i++) {
       const ev = events[i];
+
       switch (ev.type) {
         case 'line':
           line = ev.line; code = ev.code || ''; scope = ev.scope || '<module>';
@@ -244,10 +227,8 @@ export default function useExecutionPlayback(events = []) {
           scope = stack.length ? stack[stack.length - 1].name : '<module>';
           break;
         case 'print_output':
-          lines.push({ text: ev.output_text || '', sourceVars: ev.source_vars || [], step: ev.step });
-          break;
         case 'input_request':
-          lines.push({ text: ev.prompt || '', sourceVars: [], step: ev.step, isInputPrompt: true });
+          // Outputs are displayed in real-time natively, animation state ignores them.
           break;
         case 'error':
           line = ev.line || line;
@@ -265,7 +246,6 @@ export default function useExecutionPlayback(events = []) {
     setActiveCode(code);
     setVariables(vars);
     setCallStack([...stack]);
-    setConsoleLines(lines);
     setActiveScope(scope);
   }, [events]);
 
@@ -346,7 +326,6 @@ export default function useExecutionPlayback(events = []) {
       activeCode,
       variables,
       callStack,
-      consoleLines,
       activeScope,
       currentStep,
       totalSteps: events.length,

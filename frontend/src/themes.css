@@ -1,0 +1,369 @@
+/* ========================================
+   THEME DEFINITIONS
+   ======================================== */
+
+/* 1. Sci-Fi Command Center */
+body[data-theme="scifi"] {
+  --vsc-bg:              #050b14;
+  --vsc-editor-bg:       #06111f;
+  --vsc-sidebar-bg:      #081729;
+  --vsc-activitybar-bg:  #0a1d35;
+  --vsc-panel-bg:        #06111f;
+  --vsc-titlebar-bg:     #081729;
+  --vsc-menubar-bg:      #081729;
+  --vsc-statusbar-bg:    #00bfff;
+  --vsc-tab-active-bg:   #06111f;
+  --vsc-tab-inactive-bg: #0a1d35;
+  --vsc-input-bg:        #081729;
+  --vsc-dropdown-bg:     #081729;
+  --vsc-list-hover-bg:   #0f2b4c;
+  --vsc-list-active-bg:  #0059b3;
+  --vsc-breadcrumb-bg:   #06111f;
+
+  --vsc-border:          #00bfff40;
+  --vsc-border-light:    #00bfff60;
+  --vsc-tab-border:      #00bfff40;
+  --vsc-panel-border:    #00bfff40;
+  --vsc-sash:            #00bfff;
+
+  --vsc-fg:              #b3e0ff;
+  --vsc-fg-dim:          #4da6ff;
+  --vsc-fg-bright:       #ffffff;
+  --vsc-heading:         #00ffff;
+  --vsc-link:            #00ffff;
+  --vsc-accent:          #00ffff;
+  --vsc-font-family:     'Share Tech Mono', 'Orbitron', monospace;
+}
+body[data-theme="scifi"] .ide-shell {
+  background-image: 
+    linear-gradient(#00bfff10 1px, transparent 1px),
+    linear-gradient(90deg, #00bfff10 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* 2. Cyberpunk Neon */
+body[data-theme="cyberpunk"] {
+  --vsc-bg:              #090014;
+  --vsc-editor-bg:       #090014;
+  --vsc-sidebar-bg:      #13002b;
+  --vsc-activitybar-bg:  #1d0042;
+  --vsc-panel-bg:        #090014;
+  --vsc-titlebar-bg:     #13002b;
+  --vsc-menubar-bg:      #13002b;
+  --vsc-statusbar-bg:    #ff00ff;
+  --vsc-tab-active-bg:   #090014;
+  --vsc-tab-inactive-bg: #13002b;
+  --vsc-input-bg:        #26005c;
+  --vsc-dropdown-bg:     #13002b;
+  --vsc-list-hover-bg:   #3b008a;
+  --vsc-list-active-bg:  #6a00ff;
+  --vsc-breadcrumb-bg:   #090014;
+
+  --vsc-border:          #ff00ff50;
+  --vsc-border-light:    #00ffff50;
+  --vsc-tab-border:      #ff00ff50;
+  --vsc-panel-border:    #ff00ff50;
+  --vsc-sash:            #ff00ff;
+
+  --vsc-fg:              #e6ccff;
+  --vsc-fg-dim:          #b366ff;
+  --vsc-fg-bright:       #00ffff;
+  --vsc-heading:         #ff00ff;
+  --vsc-link:            #00ffff;
+  --vsc-accent:          #ff00ff;
+}
+body[data-theme="cyberpunk"] .ide-shell {
+  text-shadow: 0 0 5px rgba(255, 0, 255, 0.4);
+}
+
+/* 3. Space Explorer */
+body[data-theme="space"] {
+  --vsc-bg:              #010203;
+  --vsc-editor-bg:       #010203;
+  --vsc-sidebar-bg:      #050810;
+  --vsc-activitybar-bg:  #080c18;
+  --vsc-panel-bg:        #010203;
+  --vsc-titlebar-bg:     #050810;
+  --vsc-menubar-bg:      #050810;
+  --vsc-statusbar-bg:    #3e1c66;
+  --vsc-tab-active-bg:   #010203;
+  --vsc-tab-inactive-bg: #050810;
+  --vsc-input-bg:        #0a1020;
+  --vsc-dropdown-bg:     #050810;
+  --vsc-list-hover-bg:   #152040;
+  --vsc-list-active-bg:  #203060;
+  --vsc-breadcrumb-bg:   #010203;
+
+  --vsc-border:          #2a3a5a;
+  --vsc-border-light:    #3a4a6a;
+  --vsc-tab-border:      #1a2a4a;
+  --vsc-panel-border:    #2a3a5a;
+  --vsc-sash:            #6c4299;
+
+  --vsc-fg:              #c0d0f0;
+  --vsc-fg-dim:          #7080a0;
+  --vsc-fg-bright:       #ffffff;
+  --vsc-heading:         #aaccff;
+  --vsc-link:            #aaccff;
+  --vsc-accent:          #aaccff;
+}
+@keyframes stardrift {
+  from { background-position: 0 0; }
+  to { background-position: -1000px 500px; }
+}
+body[data-theme="space"] .ide-shell {
+  background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 4px),
+                    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 3px),
+                    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 4px);
+  background-size: 550px 550px, 350px 350px, 250px 250px;
+  background-position: 0 0, 40px 60px, 130px 270px;
+  animation: stardrift 60s linear infinite;
+  background-color: transparent !important;
+}
+
+/* 4. AI Hologram */
+body[data-theme="hologram"] {
+  --vsc-bg:              rgba(0, 10, 15, 0.7);
+  --vsc-editor-bg:       rgba(0, 15, 25, 0.6);
+  --vsc-sidebar-bg:      rgba(0, 25, 45, 0.7);
+  --vsc-activitybar-bg:  rgba(0, 35, 60, 0.8);
+  --vsc-panel-bg:        rgba(0, 15, 25, 0.6);
+  --vsc-titlebar-bg:     rgba(0, 25, 45, 0.8);
+  --vsc-menubar-bg:      rgba(0, 25, 45, 0.8);
+  --vsc-statusbar-bg:    rgba(0, 150, 255, 0.8);
+  --vsc-tab-active-bg:   rgba(0, 15, 25, 0.6);
+  --vsc-tab-inactive-bg: rgba(0, 25, 45, 0.7);
+  --vsc-input-bg:        rgba(0, 40, 70, 0.7);
+  --vsc-dropdown-bg:     rgba(0, 25, 45, 0.9);
+  --vsc-list-hover-bg:   rgba(0, 100, 200, 0.4);
+  --vsc-list-active-bg:  rgba(0, 150, 255, 0.6);
+  --vsc-breadcrumb-bg:   transparent;
+
+  --vsc-border:          rgba(0, 150, 255, 0.3);
+  --vsc-border-light:    rgba(0, 200, 255, 0.4);
+  --vsc-tab-border:      rgba(0, 150, 255, 0.2);
+  --vsc-panel-border:    rgba(0, 150, 255, 0.3);
+  --vsc-sash:            rgba(0, 200, 255, 0.8);
+
+  --vsc-fg:              #b3e6ff;
+  --vsc-fg-dim:          #66c2ff;
+  --vsc-fg-bright:       #ffffff;
+  --vsc-heading:         #ffffff;
+  --vsc-link:            #66c2ff;
+  --vsc-accent:          #0099ff;
+}
+body[data-theme="hologram"] .ide-shell {
+  backdrop-filter: blur(10px);
+  background: radial-gradient(circle at center, #001a33 0%, #000 100%);
+}
+
+/* 5. Steampunk */
+body[data-theme="steampunk"] {
+  --vsc-bg:              #2c1f15;
+  --vsc-editor-bg:       #3e2a1b;
+  --vsc-sidebar-bg:      #261910;
+  --vsc-activitybar-bg:  #1b110a;
+  --vsc-panel-bg:        #3e2a1b;
+  --vsc-titlebar-bg:     #261910;
+  --vsc-menubar-bg:      #261910;
+  --vsc-statusbar-bg:    #8b5a2b;
+  --vsc-tab-active-bg:   #3e2a1b;
+  --vsc-tab-inactive-bg: #261910;
+  --vsc-input-bg:        #4e3725;
+  --vsc-dropdown-bg:     #261910;
+  --vsc-list-hover-bg:   #5a3d28;
+  --vsc-list-active-bg:  #8b5a2b;
+  --vsc-breadcrumb-bg:   #3e2a1b;
+
+  --vsc-border:          #5a3d28;
+  --vsc-border-light:    #734f35;
+  --vsc-tab-border:      #261910;
+  --vsc-panel-border:    #5a3d28;
+  --vsc-sash:            #b87333;
+
+  --vsc-fg:              #d9c5b2;
+  --vsc-fg-dim:          #a68b72;
+  --vsc-fg-bright:       #f2e3d5;
+  --vsc-heading:         #f2e3d5;
+  --vsc-link:            #b87333;
+  --vsc-accent:          #b87333;
+  --vsc-font-family:     'Courier New', serif;
+}
+
+/* 6. Retro CRT Terminal */
+body[data-theme="crt"] {
+  --vsc-bg:              #000000;
+  --vsc-editor-bg:       #000000;
+  --vsc-sidebar-bg:      #050505;
+  --vsc-activitybar-bg:  #0a0a0a;
+  --vsc-panel-bg:        #000000;
+  --vsc-titlebar-bg:     #050505;
+  --vsc-menubar-bg:      #050505;
+  --vsc-statusbar-bg:    #003300;
+  --vsc-tab-active-bg:   #000000;
+  --vsc-tab-inactive-bg: #050505;
+  --vsc-input-bg:        #0a0a0a;
+  --vsc-dropdown-bg:     #050505;
+  --vsc-list-hover-bg:   #001a00;
+  --vsc-list-active-bg:  #004d00;
+  --vsc-breadcrumb-bg:   #000000;
+
+  --vsc-border:          #00ff0040;
+  --vsc-border-light:    #00ff0080;
+  --vsc-tab-border:      #00ff0040;
+  --vsc-panel-border:    #00ff0040;
+  --vsc-sash:            #00ff00;
+
+  --vsc-fg:              #00ff00;
+  --vsc-fg-dim:          #00aa00;
+  --vsc-fg-bright:       #55ff55;
+  --vsc-heading:         #00ff00;
+  --vsc-link:            #00ff00;
+  --vsc-accent:          #00ff00;
+  --vsc-font-family:     'VT323', 'Courier New', monospace;
+}
+@keyframes flicker {
+  0% { opacity: 0.95; }
+  5% { opacity: 0.85; }
+  10% { opacity: 0.95; }
+  15% { opacity: 1; }
+  100% { opacity: 1; }
+}
+body[data-theme="crt"] .ide-shell::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 999;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+body[data-theme="crt"] .ide-shell {
+  animation: flicker 0.15s infinite;
+  text-shadow: 0 0 2px rgba(0, 255, 0, 0.5);
+}
+
+/* 7. Matrix Theme */
+body[data-theme="matrix"] {
+  --vsc-bg:              #000000;
+  --vsc-editor-bg:       rgba(0, 0, 0, 0.85);
+  --vsc-sidebar-bg:      rgba(0, 10, 0, 0.9);
+  --vsc-activitybar-bg:  rgba(0, 15, 0, 0.95);
+  --vsc-panel-bg:        rgba(0, 0, 0, 0.85);
+  --vsc-titlebar-bg:     rgba(0, 10, 0, 0.9);
+  --vsc-menubar-bg:      rgba(0, 10, 0, 0.9);
+  --vsc-statusbar-bg:    #002200;
+  --vsc-tab-active-bg:   rgba(0, 0, 0, 0.85);
+  --vsc-tab-inactive-bg: rgba(0, 10, 0, 0.9);
+  --vsc-input-bg:        rgba(0, 20, 0, 0.9);
+  --vsc-dropdown-bg:     rgba(0, 10, 0, 0.9);
+  --vsc-list-hover-bg:   rgba(0, 40, 0, 0.5);
+  --vsc-list-active-bg:  rgba(0, 60, 0, 0.7);
+  --vsc-breadcrumb-bg:   transparent;
+
+  --vsc-border:          #004400;
+  --vsc-border-light:    #006600;
+  --vsc-tab-border:      #002200;
+  --vsc-panel-border:    #004400;
+  --vsc-sash:            #00ff00;
+
+  --vsc-fg:              #00cc00;
+  --vsc-fg-dim:          #008800;
+  --vsc-fg-bright:       #00ff00;
+  --vsc-heading:         #00ff00;
+  --vsc-link:            #00ff00;
+  --vsc-accent:          #00ff00;
+  --vsc-font-family:     'Courier New', monospace;
+}
+@keyframes matrix-bg {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 0% 1000px; }
+}
+body[data-theme="matrix"] .ide-shell {
+  background-color: black;
+  background-image: linear-gradient(0deg, transparent 24%, rgba(0, 255, 0, .3) 25%, rgba(0, 255, 0, .8) 26%, transparent 27%, transparent 74%, rgba(0, 255, 0, .3) 75%, rgba(0, 255, 0, .8) 76%, transparent 77%, transparent);
+  background-size: 50px 50px;
+  animation: matrix-bg 20s linear infinite;
+}
+
+/* 8. Glassmorphism */
+body[data-theme="glass"] {
+  --vsc-bg:              transparent;
+  --vsc-editor-bg:       rgba(255, 255, 255, 0.05);
+  --vsc-sidebar-bg:      rgba(255, 255, 255, 0.1);
+  --vsc-activitybar-bg:  rgba(255, 255, 255, 0.15);
+  --vsc-panel-bg:        rgba(255, 255, 255, 0.05);
+  --vsc-titlebar-bg:     rgba(255, 255, 255, 0.1);
+  --vsc-menubar-bg:      rgba(255, 255, 255, 0.1);
+  --vsc-statusbar-bg:    rgba(255, 255, 255, 0.2);
+  --vsc-tab-active-bg:   rgba(255, 255, 255, 0.1);
+  --vsc-tab-inactive-bg: rgba(255, 255, 255, 0.02);
+  --vsc-input-bg:        rgba(255, 255, 255, 0.1);
+  --vsc-dropdown-bg:     rgba(25, 25, 35, 0.8);
+  --vsc-list-hover-bg:   rgba(255, 255, 255, 0.15);
+  --vsc-list-active-bg:  rgba(255, 255, 255, 0.25);
+  --vsc-breadcrumb-bg:   transparent;
+
+  --vsc-border:          rgba(255, 255, 255, 0.1);
+  --vsc-border-light:    rgba(255, 255, 255, 0.2);
+  --vsc-tab-border:      rgba(255, 255, 255, 0.05);
+  --vsc-panel-border:    rgba(255, 255, 255, 0.1);
+  --vsc-sash:            rgba(255, 255, 255, 0.5);
+
+  --vsc-fg:              #e0e0e0;
+  --vsc-fg-dim:          #a0a0a0;
+  --vsc-fg-bright:       #ffffff;
+  --vsc-heading:         #ffffff;
+  --vsc-link:            #88ccff;
+  --vsc-accent:          #ffffff;
+}
+@keyframes gradient-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+body[data-theme="glass"] {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient-bg 15s ease infinite;
+}
+body[data-theme="glass"] .ide-shell {
+  backdrop-filter: blur(20px);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 9. Dark Hacker */
+body[data-theme="dark-hacker"] {
+  --vsc-bg:              #0a0a0a;
+  --vsc-editor-bg:       #0a0a0a;
+  --vsc-sidebar-bg:      #0f0f0f;
+  --vsc-activitybar-bg:  #141414;
+  --vsc-panel-bg:        #0a0a0a;
+  --vsc-titlebar-bg:     #0f0f0f;
+  --vsc-menubar-bg:      #0f0f0f;
+  --vsc-statusbar-bg:    #660000;
+  --vsc-tab-active-bg:   #0a0a0a;
+  --vsc-tab-inactive-bg: #0f0f0f;
+  --vsc-input-bg:        #141414;
+  --vsc-dropdown-bg:     #0f0f0f;
+  --vsc-list-hover-bg:   #1a1a1a;
+  --vsc-list-active-bg:  #2a0000;
+  --vsc-breadcrumb-bg:   #0a0a0a;
+
+  --vsc-border:          #1a1a1a;
+  --vsc-border-light:    #2a2a2a;
+  --vsc-tab-border:      #0f0f0f;
+  --vsc-panel-border:    #1a1a1a;
+  --vsc-sash:            #ff3333;
+
+  --vsc-fg:              #a0a0a0;
+  --vsc-fg-dim:          #606060;
+  --vsc-fg-bright:       #ffffff;
+  --vsc-heading:         #ff3333;
+  --vsc-link:            #ff3333;
+  --vsc-accent:          #ff3333;
+}

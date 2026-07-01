@@ -67,7 +67,7 @@ const ArrayBlockVisualizer = ({ name, value, iterators, meta, highlightVar }) =>
   });
 
   return (
-    <div className={`mb-6 p-4 rounded-lg border-2 transition-colors duration-300 ${isHighlight ? 'border-blue-500 bg-[#1e1e2e]' : 'border-gray-700 bg-[#181825]'}`}>
+    <div className={`mb-6 p-4 rounded-lg border transition-all duration-300 ${isHighlight ? 'border-[#00F5FF] sci-fi-glass shadow-[0_0_20px_rgba(0,245,255,0.2)] bg-transparent' : 'border-[#00F5FF]/20 bg-black/20'}`}>
       <div className="flex justify-between items-center mb-4">
         <div className="flex gap-2 items-center">
           <span className="font-mono text-lg font-bold text-white">{name}</span>
@@ -97,8 +97,8 @@ const ArrayBlockVisualizer = ({ name, value, iterators, meta, highlightVar }) =>
               className="relative flex flex-col items-center"
             >
               <div
-                className="w-10 h-10 border flex items-center justify-center rounded font-mono text-sm bg-[#11111b] text-white shadow-lg"
-                style={{ borderColor: typeColor(meta.dtype) }}
+                className="w-10 h-10 border flex items-center justify-center rounded font-mono text-sm bg-black/50 text-white shadow-[0_0_10px_rgba(0,245,255,0.1)] backdrop-blur-sm"
+                style={{ borderColor: typeColor(meta.dtype), textShadow: '0 0 5px rgba(255,255,255,0.5)' }}
               >
                 {item === ' ' ? '␣' : valueDisplay(item)}
               </div>
@@ -112,8 +112,8 @@ const ArrayBlockVisualizer = ({ name, value, iterators, meta, highlightVar }) =>
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
                 >
-                  <span className="text-red-500 text-xs mt-[-4px]">↑</span>
-                  <span className="text-red-400 text-xs font-bold font-mono">{iter.name}</span>
+                  <span className="text-[#FF3E6C] text-xs mt-[-4px]" style={{ filter: 'drop-shadow(0 0 5px #FF3E6C)' }}>↑</span>
+                  <span className="text-[#FF3E6C] text-xs font-bold font-mono tracking-widest">{iter.name}</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -131,7 +131,7 @@ const ObjectBlockVisualizer = ({ name, value, meta, highlightVar }) => {
   const fields = (typeof value === 'object' && value !== null && !Array.isArray(value)) ? Object.entries(value) : [];
 
   return (
-    <div className={`mb-6 p-4 rounded-lg border-2 transition-colors duration-300 ${isHighlight ? 'border-blue-500 bg-[#1e1e2e]' : 'border-gray-700 bg-[#181825]'}`}>
+    <div className={`mb-6 p-4 rounded-lg border transition-all duration-300 ${isHighlight ? 'border-[#00F5FF] sci-fi-glass shadow-[0_0_20px_rgba(0,245,255,0.2)] bg-transparent' : 'border-[#00F5FF]/20 bg-black/20'}`}>
       <div className="flex justify-between items-center mb-4">
         <div className="flex gap-2 items-center">
           <span className="font-mono text-lg font-bold text-white">{name}</span>
@@ -146,7 +146,7 @@ const ObjectBlockVisualizer = ({ name, value, meta, highlightVar }) => {
           </span>
         </div>
       </div>
-      <div className="bg-[#11111b] rounded border border-gray-700 p-3 flex flex-col gap-2">
+      <div className="bg-black/40 rounded border border-[#00F5FF]/10 p-3 flex flex-col gap-2 shadow-[inset_0_0_10px_rgba(0,245,255,0.05)]">
         {fields.length === 0 ? (
           <div className="text-gray-500 text-sm font-mono italic">No exposed fields</div>
         ) : (
@@ -202,11 +202,11 @@ export default function MemoryPanel({ variables, highlightVar }) {
   });
 
   return (
-    <div className="mem-panel h-full flex flex-col p-4 bg-[#1e1e2e] text-white overflow-y-auto">
-      <div className="flex items-center gap-2 mb-6 border-b border-gray-700 pb-2">
-        <span className="text-xl">💾</span>
-        <span className="font-bold text-sm tracking-wider text-gray-300">RAM MEMORY</span>
-        <span className="ml-auto bg-gray-700 text-xs px-2 py-1 rounded-full">{entries.length} items</span>
+    <div className="mem-panel h-full flex flex-col p-4 bg-transparent text-white overflow-y-auto">
+      <div className="flex items-center gap-2 mb-6 border-b border-[#00F5FF]/20 pb-3">
+        <span className="text-xl filter drop-shadow-[0_0_5px_#00F5FF]">💾</span>
+        <span className="font-bold text-sm tracking-[2px] text-[#00F5FF]">NEURAL MEMORY MATRIX</span>
+        <span className="ml-auto bg-[#00F5FF]/10 border border-[#00F5FF]/30 text-[#00F5FF] text-xs px-3 py-1 rounded-full shadow-[0_0_10px_rgba(0,245,255,0.2)]">{entries.length} ALLOCATED</span>
       </div>
 
       {entries.length === 0 && (
@@ -251,14 +251,14 @@ export default function MemoryPanel({ variables, highlightVar }) {
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0, opacity: 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="flex flex-col bg-[#181825] border border-gray-700 p-2 rounded relative overflow-hidden"
+                  className="flex flex-col bg-black/40 border border-[#00F5FF]/20 p-3 rounded-lg relative overflow-hidden sci-fi-glass hover:shadow-[0_0_15px_rgba(0,245,255,0.15)] transition-shadow"
                 >
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="font-mono text-sm font-bold text-blue-300">{prim.name}</span>
-                    <span className="text-[10px] uppercase text-gray-500">{prim.dtype}</span>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-mono text-[13px] font-bold text-[#00F5FF] tracking-wide">{prim.name}</span>
+                    <span className="text-[10px] uppercase text-[#8b949e] font-bold tracking-widest">{prim.dtype}</span>
                   </div>
-                  <div className="font-mono text-lg mb-1">{valueDisplay(prim.value)}</div>
-                  <div className="text-[10px] text-gray-500 text-right mt-auto border-t border-gray-800 pt-1">
+                  <div className="font-mono text-lg mb-2 text-white" style={{ textShadow: '0 0 5px rgba(255,255,255,0.3)' }}>{valueDisplay(prim.value)}</div>
+                  <div className="text-[10px] text-[#00F5FF]/60 text-right mt-auto border-t border-[#00F5FF]/10 pt-2 tracking-widest">
                     {sizeLabel(prim.size)}
                   </div>
                 </motion.div>

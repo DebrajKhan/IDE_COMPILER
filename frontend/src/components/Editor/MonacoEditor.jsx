@@ -1,14 +1,22 @@
 import React, { useRef, useImperativeHandle, forwardRef, useCallback } from 'react';
 import Editor from '@monaco-editor/react';
 
-const MonacoEditorWithCommands = forwardRef(({ language, value, onCodeChange, activeLine }, ref) => {
+const MonacoEditorWithCommands = forwardRef(({ language, value, onCodeChange, activeLine, editorFontSize = 14, editorFontFamily = "'Cascadia Code', 'Fira Code', Consolas, monospace" }, ref) => {
     const editorRef = useRef(null);
     const monacoRef = useRef(null);
     const decorationsRef = useRef([]);
+    const wrapperRef = useRef(null);
 
     const handleEditorDidMount = (editor, monaco) => {
         editorRef.current = editor;
         monacoRef.current = monaco;
+
+        editor.onKeyDown((e) => {
+            if (!wrapperRef.current) return;
+            wrapperRef.current.classList.remove('typing-glow-active');
+            void wrapperRef.current.offsetWidth;
+            wrapperRef.current.classList.add('typing-glow-active');
+        });
 
         // Define CSS for execution line highlight
         monaco.editor.defineTheme('vs-dark-exec', {
@@ -32,6 +40,13 @@ const MonacoEditorWithCommands = forwardRef(({ language, value, onCodeChange, ac
                 background: rgba(0,122,204,0.3);
                 border-radius: 50%;
                 margin-left: 4px;
+            }
+            .typing-glow-active {
+                animation: monacoTypingPulse 0.3s ease-out;
+            }
+            @keyframes monacoTypingPulse {
+                0% { box-shadow: inset 0 0 40px rgba(0, 245, 255, 0.4), 0 0 20px rgba(0, 245, 255, 0.2); }
+                100% { box-shadow: inset 0 0 0px rgba(0, 245, 255, 0), 0 0 0px rgba(0, 245, 255, 0); }
             }
         `;
         document.head.appendChild(styleEl);
@@ -97,7 +112,7 @@ const MonacoEditorWithCommands = forwardRef(({ language, value, onCodeChange, ac
     }));
 
     return (
-        <div style={{ height: '100%', width: '100%' }}>
+        <div ref={wrapperRef} style={{ height: '100%', width: '100%', transition: 'box-shadow 0.3s ease-out', borderRadius: '4px' }}>
             <Editor
                 height="100%"
                 language={language}
@@ -107,8 +122,8 @@ const MonacoEditorWithCommands = forwardRef(({ language, value, onCodeChange, ac
                 onMount={handleEditorDidMount}
                 options={{
                     minimap: { enabled: true },
-                    fontSize: 14,
-                    fontFamily: "'Cascadia Code', 'Fira Code', Consolas, monospace",
+                    fontSize: editorFontSize,
+                    fontFamily: editorFontFamily,
                     wordWrap: 'on',
                     contextmenu: true,
                     lineNumbers: 'on',

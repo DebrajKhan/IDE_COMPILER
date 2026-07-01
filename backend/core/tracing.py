@@ -56,6 +56,7 @@ def run_python_trace(user_code: str, out_queue: queue.Queue, in_queue: queue.Que
             "source_vars": source_vars[:3],
             "scope": scope_name,
             "stack": list(call_stack),
+            "line_id": f"{step_counter[0]}_{hash(output_text)}"
         })
         # Note: We don't actually print to the real terminal to avoid noise, 
         # or we could. Let's just suppress it since it goes to the visualizer.
@@ -326,7 +327,7 @@ C_GDB_SCRIPT = """set pagination off
 set confirm off
 set print pretty on
 break main
-run > /app/stdout.txt
+run > /tmp/stdout.txt
 
 python
 import sys
@@ -342,49 +343,69 @@ import json
 
 events = []
 step_counter = 1
-prev_locals_cache = {}
+
+def is_internal(name):
+    return not name or name.startswith('_') or name.startswith('__')
 
 def parse_gdb_value(val):
+    size = 0
     try:
         size = val.type.sizeof
-    except:
-        size = 0
+    except Exception:
+        pass
 
     try:
         type_code = val.type.strip_typedefs().code
     except Exception:
         type_code = gdb.TYPE_CODE_INT
 
+    type_name = str(val.type).strip()
+
+    # STL flattening
     try:
         visualizer = gdb.default_visualizer(val)
         if visualizer:
-            type_name = str(val.type)
             if hasattr(visualizer, 'children'):
-                children = list(visualizer.children())
-                if "vector" in type_name or "deque" in type_name or "list" in type_name or "stack" in type_name or "queue" in type_name or "array" in type_name:
+                children = visualizer.children()
+                # Handle vector, deque, list, stack, queue, array
+                if any(x in type_name for x in ["vector", "deque", "list", "stack", "queue", "array"]):
                     arr = []
-                    for name, child_val in children:
+                    for i, (name, child_val) in enumerate(children):
+                        if i >= 100:
+                            arr.append("... (truncated)")
+                            break
                         arr.append(parse_gdb_value(child_val)["value"])
                     return {"type": "array", "value": arr, "size": size}
+                # Handle map, set
                 elif "map" in type_name or "set" in type_name:
                     arr = []
-                    for name, child_val in children:
+                    for i, (name, child_val) in enumerate(children):
+                        if i >= 100:
+                            arr.append("... (truncated)")
+                            break
                         arr.append(parse_gdb_value(child_val)["value"])
                     return {"type": "object", "value": arr, "size": size}
+                # std::string fallback if children exist
+                elif "string" in type_name:
+                    if hasattr(visualizer, 'to_string'):
+                        s = visualizer.to_string()
+                        if hasattr(s, 'value'): s = s.value()
+                        if isinstance(s, gdb.Value):
+                            try: s = s.string()
+                            except: s = str(s)
+                        return {"type": "primitive", "value": str(s), "size": size}
 
             if hasattr(visualizer, 'to_string'):
                 s = visualizer.to_string()
-                if hasattr(s, 'value'):
-                    s = s.value()
+                if hasattr(s, 'value'): s = s.value()
                 if isinstance(s, gdb.Value):
-                    try:
-                        s = s.string()
-                    except:
-                        s = str(s)
+                    try: s = s.string()
+                    except: s = str(s)
                 return {"type": "primitive", "value": str(s), "size": size}
     except Exception:
         pass
 
+    # Basic types
     if type_code == gdb.TYPE_CODE_PTR:
         try:
             target = val.dereference()
@@ -406,11 +427,11 @@ def parse_gdb_value(val):
             return {"type": "array", "value": arr, "size": size}
         except:
             return {"type": "array", "value": str(val), "size": size}
-    elif type_code == gdb.TYPE_CODE_STRUCT or type_code == gdb.TYPE_CODE_UNION:
+    elif type_code in (gdb.TYPE_CODE_STRUCT, gdb.TYPE_CODE_UNION):
         fields = {}
         try:
             for field in val.type.fields():
-                if hasattr(field, 'bitpos') and field.name and not field.name.startswith('_'):
+                if hasattr(field, 'bitpos') and field.name and not is_internal(field.name):
                     fields[field.name] = parse_gdb_value(val[field])
         except:
             pass
@@ -419,10 +440,8 @@ def parse_gdb_value(val):
         try:
             v = val.string() if type_code == gdb.TYPE_CODE_STRING else str(val)
             try:
-                if '.' in v:
-                    v = float(v)
-                else:
-                    v = int(v.split(' ')[0])
+                if '.' in v: v = float(v)
+                else: v = int(v.split(' ')[0])
             except:
                 pass
             return {"type": "primitive", "value": v, "size": size}
@@ -435,54 +454,37 @@ while True:
         if not frame or frame.name() is None:
             break
 
+        variables = {}
         block = frame.block()
-        locals_dict = {}
-        for symbol in block:
-            if symbol.is_argument or symbol.is_variable:
-                if symbol.name.startswith('_'):
-                    continue
-                try:
-                    val = frame.read_var(symbol)
-                    parsed = parse_gdb_value(val)
-                    locals_dict[symbol.name] = {
-                        "value": parsed["value"],
-                        "dtype": parsed["type"],
-                        "size": parsed["size"],
-                        "addr": str(val.address) if val.address else "0x0"
-                    }
-                except Exception as e:
-                    pass
+        
+        if block:
+            for symbol in block:
+                if symbol.is_argument or symbol.is_variable:
+                    if is_internal(symbol.name):
+                        continue
+                    try:
+                        val = frame.read_var(symbol)
+                        parsed = parse_gdb_value(val)
+                        addr = str(val.address) if val.address else "0x0"
+                        variables[symbol.name] = {
+                            "value": parsed["value"],
+                            "dtype": parsed["type"],
+                            "size": parsed["size"],
+                            "addr": addr,
+                            "scope": frame.name() or "<module>"
+                        }
+                    except Exception as e:
+                        pass
 
-        for var_name, info in locals_dict.items():
-            if var_name not in prev_locals_cache:
-                events.append({
-                    "step": step_counter,
-                    "type": "var_declare",
-                    "name": var_name,
-                    "value": info["value"],
-                    "dtype": info["dtype"],
-                    "size": info["size"],
-                    "addr": info["addr"],
-                    "scope": frame.name() or "<module>"
-                })
-                step_counter += 1
-            else:
-                old_info = prev_locals_cache[var_name]
-                if old_info["value"] != info["value"]:
-                    events.append({
-                        "step": step_counter,
-                        "type": "var_update",
-                        "name": var_name,
-                        "value": info["value"],
-                        "old_value": old_info["value"],
-                        "dtype": info["dtype"],
-                        "size": info["size"],
-                        "addr": info["addr"],
-                        "scope": frame.name() or "<module>"
-                    })
-                    step_counter += 1
+        # Output the unified dictionary structure containing a variables map
+        events.append({
+            "step": step_counter,
+            "type": "snapshot",
+            "variables": variables,
+            "scope": frame.name() or "<module>"
+        })
+        step_counter += 1
 
-        prev_locals_cache = locals_dict
         gdb.execute('next')
     except Exception as e:
         break
@@ -492,3 +494,4 @@ print(json.dumps(events))
 print("---GDB_JSON_END---")
 end
 """
+
